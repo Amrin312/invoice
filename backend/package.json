@@ -3,16 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "main": "server.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_OPTIONS=--dns-result-order=ipv4first && nodemon server.js"
+    "start": "nodemon server.js"
   },
   "author": "Amrin",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@clerk/express": "^2.1.5",
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
