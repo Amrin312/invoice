@@ -1,0 +1,21 @@
+# Node (frontend/backend)
+node_modules/
+npm-debug.log*
+
+# PHP / Laravel
+vendor/
+
+# Environment files
+.env
+
+# Build folders
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
