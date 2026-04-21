@@ -97,7 +97,7 @@ const Header = () => {
 
         {
             isMenuOpen && (
-                <div className="lg:hidden w-full absolute top-full left-0 right-0bg-white border-b border-gray-200 shadow-lg">
+                <div className="lg:hidden w-full absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <a href="#features" className='block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium transition-colors duration-200'>Features</a>
 
