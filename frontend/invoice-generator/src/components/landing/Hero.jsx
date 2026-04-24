@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import hero_img from '../../assets/hero_img.png'
+import { useAuth } from '../../context/AuthContext';
 
 const Hero = () => {
 
-  const isAuthenticated = false;
+  const { isAuthenticated } = useAuth();
+
   const linkStyle = 'bg-gradient-to-r from-blue-950 to-blue-900 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-900 transition-all duration-200 hover:scale-105 hover:shadow-2xl transform';
 
   return (

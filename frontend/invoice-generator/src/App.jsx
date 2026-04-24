@@ -10,10 +10,12 @@ import CreateInvoice from './pages/Invoices/CreateInvoice'
 import InvoiceDetail from './pages/Invoices/InvoiceDetails'
 import ProfilePage from './pages/Profile/ProfilePage'
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
+
 
 const App = () => {
   return (
-    <div>
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -21,12 +23,12 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
 
           {/* protected routes  */}
-          <Route to="/" element={<ProtectedRoute />}>
-            <Route to="dashboard" element={<Dashboard />} />
-            <Route to="invoices" element={<AllInvoices />} />
-            <Route to="invoices/new" element={<CreateInvoice />} />
-            <Route to="invoices/:id" element={<InvoiceDetail />} />
-            <Route to="profile" element={<ProfilePage />} />
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="invoices" element={<AllInvoices />} />
+            <Route path="invoices/new" element={<CreateInvoice />} />
+            <Route path="invoices/:id" element={<InvoiceDetail />} />
+            <Route path="profile" element={<ProfilePage />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />
@@ -44,7 +46,7 @@ const App = () => {
       />
 
 
-    </div>
+    </AuthProvider>
   )
 }
 

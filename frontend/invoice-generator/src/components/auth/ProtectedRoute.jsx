@@ -2,11 +2,11 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import Login from '../../pages/Auth/Login';
 import DashboardLayout from '../layout/DashboardLayout';
+import { useAuth } from '../../context/AuthContext';
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = ({ children}) => {
     
-    const isAuthenticated = true;
-    const loading = false;
+    const { isAuthenticated, loading } = useAuth();
 
     if(loading){
         return <div>Loading</div>
@@ -18,7 +18,7 @@ const ProtectedRoute = ({children}) => {
 
   return (
     <DashboardLayout>
-        {Children ? children : <Outlet />}
+        {children ? children : <Outlet />}
     </DashboardLayout>
   )
 }
