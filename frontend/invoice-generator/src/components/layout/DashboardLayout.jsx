@@ -3,6 +3,18 @@ import { useAuth } from '../../context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom';
 import { Briefcase, LogOut, Menu, X } from 'lucide-react';
 import { NAVIGATION_MENU } from '../../utils/data';
+import ProfileDropdown from './ProfileDropdown';
+const NavigationItem = ({ item, isActive, onClick, isCollapsed }) => {
+  const Icon = item.icon;
+
+  return <button 
+  className={`w-full flex items-center ${isCollapsed ? "justify-center" : "justify-start"} px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 group ${isActive ? "bg-blue-50 text-blue-900 shadow-sm shadow-blue-50": "text-gray-600 hover:bg-gray-50 hover:text-gray-900"}`} onClick={() => onClick(item.id)}>
+
+    <Icon className={`h-5 w-5 flex-shrink-0 ${isActive ? "text-blue-900" : "text-gray-500"}`} />
+    {!isCollapsed && <span className='ml-3 truncate'>{ item.name }</span>}
+  </button>
+}
+
 
 const DashboardLayout = ({ children, activeMenu }) => {
 
@@ -76,7 +88,7 @@ const DashboardLayout = ({ children, activeMenu }) => {
         {/* Navigation  */}
         <nav className="p-4 space-y-2">
           { NAVIGATION_MENU.map((item) => (
-            <NavigationItem  />
+            <NavigationItem key={item.id} item={item} isActive={activeNavItem === item.id} onClick={handleNavigation} isCollapsed={sidebarCollapsed}  />
           )) }
         </nav>
 
@@ -126,6 +138,14 @@ const DashboardLayout = ({ children, activeMenu }) => {
 
               <div className='flex items-center space-x-3'>
                 {/* profile dropdown  */}
+                <ProfileDropdown isOpen={profileDropdownOpen} onToggle={(e) => {
+                   e.stopPropagation() 
+                   setProfileDropdownOpen(!profileDropdownOpen)
+                   }} 
+                   avatar={user?.avatar || '' }
+                   companyName={user?.name || '' }
+                   email={user?.email || '' }
+                   onLogout={logout} />
               </div>
 
             </header>
