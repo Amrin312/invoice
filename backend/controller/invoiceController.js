@@ -60,9 +60,14 @@ export const createInvoice = async (req, res) => {
 export const getInvoices = async (req, res) => {
 
     try{
-        const invoices = await Invoice.find().populate("user", "name email");
+        const invoices = await Invoice.find({user: req.user.id}).populate("user", "name email");
+
+        // if(invoices.user.toString() !== req.user.id){
+        //     return res.status(401).json()({message: "Not Authorized."});
+        // }
 
         res.json(invoices);
+
     }catch(err){
         res.status(401).json({message: "Error fetching invoice", error: err.message});
     }

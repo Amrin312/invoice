@@ -151,7 +151,7 @@ const DashboardLayout = ({ children, activeMenu }) => {
             </header>
 
             {/* main content area  */}
-            <main className="flex-1 overflow-auto p-2">
+            <main className="flex-1 overflow-auto p-5">
               { children }
             </main>
 
