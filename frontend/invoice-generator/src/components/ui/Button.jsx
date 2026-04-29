@@ -5,7 +5,7 @@ const Button = ({
     size = 'medium',
     isLoading = false,
     children,
-    // icon = Icon,
+    icon: Icon,
     ...props
 }) => {
 
@@ -30,7 +30,7 @@ const Button = ({
                     <Loader2 className='w-5 h-5 animate-spin' />
                 ) : (
                     <>
-                        {/* {icon && <Icon className='w-4 h-4 mr-2' />} */}
+                        {Icon && <Icon className='w-4 h-4 mr-2' />}
                         {children}
                     </>
                 )
