@@ -97,8 +97,8 @@ const InvoiceDetails = () => {
         </div>
       </div>
 
-      <div className="invoice-content-wrapper">
-        <div ref={invoiceRef} id="invoice-preview" className="bg-white p-6 sm:p-8 md:p-12 rounded-lg shadow-md border-slate-200 pb[100vh]">
+      <div id="invoice-content-wrapper">
+        <div ref={invoiceRef} id="invoice-preview" className="bg-white p-6 sm:p-8 md:p-12 rounded-lg shadow-md border-slate-200">
           <div className="flex flex-col sm:flex-row justify-between items-start pb-8 border-b border-slate-200">
 
             <div>
@@ -113,7 +113,7 @@ const InvoiceDetails = () => {
 
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 my-8">
             <div className="">
               <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">Bill From</h3>
               <p className="font-semibold text-slate-800">{invoice.billFrom.businessName}</p>
@@ -131,7 +131,7 @@ const InvoiceDetails = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 my-8">
 
             <div className="">
               <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">Invoice Date</h3>
@@ -154,10 +154,12 @@ const InvoiceDetails = () => {
           <div className="bg-white border border-slate-200 rounded-lg overflow-hidden">
             <table className="w-full divide-y divide-slate-200">
               <thead className="bg-slate-50">
-                <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Item</th>
-                <th className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">Qnt</th>
-                <th className="px-4 sm:px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Price</th>
-                <th className="px-4 sm:px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Total</th>
+                <tr>
+                  <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Item</th>
+                  <th className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">Qnt</th>
+                  <th className="px-4 sm:px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Price</th>
+                  <th className="px-4 sm:px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Total</th>
+                </tr>
               </thead>
 
               <tbody className="bg-white divide-y divide-slate-200">
@@ -173,21 +175,21 @@ const InvoiceDetails = () => {
             </table>
           </div>
 
-          <div className="">
-            <div className="">
-              <div className="">
+          <div className="flex justify-end mt-8">
+            <div className="w-full max-w-sm space-y-3">
+              <div className="flex justify-between text-sm text-slate-600">
                 <span className="">Subtotal</span>
-                <span className="">${invoice.subtotal.toFixed(2)}</span>
+                <span className="">${invoice?.subtotal?.toFixed(2)}</span>
               </div>
 
-              <div className="">
+              <div className="flex justify-between text-sm text-slate-600">
                 <span className="">Tax</span>
-                <span className="">${invoice.taxTotal.toFixed(2)}</span>
+                <span className="">${invoice?.taxTotal?.toFixed(2)}</span>
               </div>
 
-              <div className="">
+              <div className="flex justify-between font-semibold text-lg text-slate-900 border-t border-slate-200 pt-3 mt-3">
                 <span className="">Total</span>
-                <span className="">${invoice.total.toFixed(2)}</span>
+                <span className="">${invoice?.total?.toFixed(2)}</span>
               </div>
 
             </div>
@@ -195,14 +197,43 @@ const InvoiceDetails = () => {
 
 
           {invoice.notes && (
-            <div className="">
-              <h3 className="">Notes</h3>
-              <p className="">{invoice.notes}</p>
+            <div className="mt-8 pt-8 border-t border-slate-200">
+              <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">Notes</h3>
+              <p className="text-sm text-slate-600">{invoice.notes}</p>
             </div>
           )}
 
         </div>
       </div>
+      <style>
+        {`
+          @page {
+            padding: 10px;
+          }
+          
+          @media print {
+          body * {
+            visibility: hidden;
+          }
+          #invoice-content-wrapper, #invoice-content-wrapper * {
+            visibility: visible;
+          }
+          #invoice-content-wrapper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            width: 100%;
+          }
+          #invoice-preview {
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+          }
+          }
+        `}
+      </style>
     </>
   )
 }

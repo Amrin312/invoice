@@ -58,10 +58,10 @@ export const AuthProvider = ({ children }) => {
         window.location.href = "/"
     };
 
-    const updateuser = (updatedUserData) =>{
+    const updateUser = (updatedUserData) =>{
 
         const newUserData = { ...user, ...updatedUserData };
-        localStorage.setItem("user", JSON.parse(newUserData));
+        localStorage.setItem("user", JSON.stringify(newUserData));
         setUser(newUserData);
         
     };
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated,
         login,
         logout,
-        updateuser,
+        updateUser,
         checkAuthStatus
     };
 
