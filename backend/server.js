@@ -9,13 +9,14 @@ import { connectDB } from './config/db.js';
 
 
 const app = express();
-const port = 4000;
+
+const port = process.env.PORT || 4000;
 
 //middlewares
 app.use(cors({
     origin: "*",
     methods: ["GET", "POST", "PUT", 'DELETE'],
-    allowedHeaders: ["content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 
 }));
 
